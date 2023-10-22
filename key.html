@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>JSX Exercise</title>
+</head>
+<body>
+<div id="container"></div>
+<script>
+    const counter = 1;
+    const cities = [
+        {'name': 'Washington,D.C.', 'zipcode': 20011},
+        {'name': 'Fairfield', 'zipcode': 20011},
+        {'name': 'Silver Spring', 'zipcode': 20011}
+    ];
+</script>
+<script type="text/babel">
+    const vDOM = (
+        <>
+            <table border='10' style={{width: '70%', color:'green'}}>
+                <thead style={{color:'red'}}>
+                <tr>
+                    <th>index</th>
+                    <th>city</th>
+                    <th>zipcode</th>
+                </tr>
+                </thead>
+                <tbody>
+                {cities.map(city =>
+                    <tr key={counter}>
+                        <td>{counter}</td>
+                        <td>{city.name}</td>
+                        <td>{city.zipcode}</td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
+        </>
+    )
+    const root = ReactDOM.createRoot(document.getElementById("container"))
+    root.render(vDOM);
+</script>
+
+</body>
+</html>

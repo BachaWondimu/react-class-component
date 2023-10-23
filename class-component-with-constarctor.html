@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>class-component-with-constarctor</title>
+</head>
+<body>
+<h1 id="container"></h1>
+<!--jsx-->
+<script type="text/babel">
+  class Class1 extends React.Component{
+    constructor(props) {
+      super(props)
+      this.state={isHot:true,isWindy:true}
+      this.handleClick=this.handleClick.bind(this)
+    }
+    render() {
+        console.log('render')
+     const {isHot,isWindy} = this.state;
+      return(
+              <>
+                <h1 onClick={this.handleClick}>Weather is: {isHot?'Damn Hot':'Freezing'} and {isWindy?'Super Windy':'Humid'}</h1>
+              </>
+      )
+    }
+
+    handleClick(){
+      const {isHot,isWindy} = this.state;
+      this.setState({isWindy: !isWindy, isHot: !isHot})
+    }
+
+  }
+  ReactDOM.createRoot(document.getElementById('container')).render(<Class1/>)
+</script>
+
+</body>
+</html>

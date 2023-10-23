@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Class-component-state</title>
+</head>
+<body>
+<h1 id="container"></h1>
+<!--jsx starts here-->
+<script type="text/babel">
+    class Class1 extends React.Component{
+        state = {English:true, Spanish:true, AfaanOromoo:true}
+        handleClick0 = ()=>{
+            const {English, Spanish, AfaanOromoo} = this.state;
+            this.setState({English:!English});
+        }
+        handleClick1 = ()=>{
+            this.setState(prev=>({Spanish:!prev.Spanish}), ()=>{console.log(this.state.Spanish)});
+        }
+        handleClick2 = ()=>{
+            this.setState(prev=>({ AfaanOromoo:!prev.AfaanOromoo}), ()=>{console.log('this is call back')});
+        }
+
+        render() {
+            console.log('render')
+            const {English, Spanish, AfaanOromoo} = this.state;
+            return <>
+                <div>  What language do you speak:</div>
+                <div onClick={this.handleClick0}>
+                  {English?'English: Hello':"Not English"}
+                </div>
+                <div onClick={this.handleClick1}>{Spanish? 'Spanish: Holla': 'not spanish either'}</div>
+                <div onClick={this.handleClick2}>{AfaanOromoo?'AfaanOromoo: Akkam': 'something else'}</div>
+            </>
+        }
+
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<Class1/>)
+</script>
+</body>
+</html>

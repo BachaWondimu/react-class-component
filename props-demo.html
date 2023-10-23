@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <title>props-demo</title>
+</head>
+<body>
+<div id="container1"></div>
+<div id="container2"></div>
+<div id="container3"></div>
+<div id="container4"></div>
+<div id="container5"></div>
+<div id="container6"></div>
+<hr color="red"/>
+<pre>
+  => props are to pass information from parent component to child component
+  => can be HTML attributes, js objects, arrays and functions
+  => Props are the information that you pass to a JSX tag
+</pre>
+
+<!--jsx-->
+<script type="text/babel">
+  class Class1 extends React.Component{
+    render(){
+      const{name,age,gender}= this.props;
+      return(
+              <>
+               <ul>
+                 <li>Name: {name}</li>
+                 <li>Age: {age}</li>
+                 <li>Gender: {gender}</li>
+               </ul>
+              </>
+      )
+    }
+  }
+
+  function Func(props){
+    const{name,age,gender} = props;
+    return(
+            <>
+              <ul>
+                <li>Name: {name}</li>
+                <li>Age: {age}</li>
+                <li>Gender: {gender}</li>
+              </ul>
+            </>
+    )
+  }
+  Class1.propTypes={
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired
+  }
+
+  function Func2({name,age,gender}){
+    return(
+            <>
+              <ul>
+                <li>Name: {name}</li>
+                <li>Age: {age}</li>
+                <li>Gender: {gender}</li>
+              </ul>
+            </>
+    )
+  }
+
+  const obj = {
+    name:'Bacha',
+    age:30,
+    gender:'male'
+  };
+  const obj1 = {
+    name:'John',
+    age:30,
+    gender:'male'
+  };
+  const obj2 = {
+    name:'Anna',
+    age:30,
+    gender:'male'
+  };
+
+  ReactDOM.createRoot(document.getElementById('container1')).render(<Class1 {...obj}/>)
+  ReactDOM.createRoot(document.getElementById('container2')).render(<Class1 name='Chaltu' gender='female'/>)
+  ReactDOM.createRoot(document.getElementById('container3')).render(<Class1 name='Ayantu' age={23} gender="female"/>)
+  ReactDOM.createRoot(document.getElementById('container4')).render(<Func {...obj1}/>)
+  ReactDOM.createRoot(document.getElementById('container5')).render(<Func2 {...obj2}/>)
+</script>
+</body>
+</html>

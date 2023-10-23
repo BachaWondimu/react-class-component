@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Refs demo</title>
+</head>
+<body>
+<h1>
+  <hr color="red"/>
+</h1>
+<div id="container"></div>
+<h1>
+  <hr color="red"/>
+</h1>
+<pre>
+  <b>
+    => Refs are to access DOM nodes or React elements created in the render method.
+
+    => When you change a ref, it doesn't cause the component to re-render.
+      This is a key difference from changing state or props.
+      When state or props change, React will typically trigger a re-render of the component.
+      However, changing a ref won't cause this
+
+    => Ref allows a React component to hold a reference to a DOM element or another React component.
+      This reference can be used to interact with or access the properties of that element or
+      component at a later time, even after it has been rendered.
+  </b>
+</pre>
+
+<script type="text/babel">
+
+  ReactDOM.createRoot(document.getElementById('container')).render()
+</script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

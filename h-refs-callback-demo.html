@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>refs-callback-demo.</title>
+</head>
+<body>
+<h1>
+    <hr color="red"/>
+</h1>
+<div id="container"></div>
+<h1>
+    <hr color="red"/>
+</h1>
+<pre>
+    => Syntax:
+        callBack = current => this.input1 = current
+        ref={this.callBack}
+        {current => this.input = current}
+        alertValue = () => {
+            alert(this.input.value)
+        }
+</pre>
+<script type="text/babel">
+    class Class1 extends React.Component {
+        alertValue = () => {
+            alert(this.input.value)
+        }
+        showValue = () => {
+            alert('name: ' + this.input.value + ' ' +
+                'age: ' + this.input1.value)
+        }
+        callBack = current => this.input1 = current
+        render() {
+            return (
+                <>
+                    <label>name:<input placeholder="name" ref={current => this.input = current}/></label>
+                    <button onClick={this.alertValue}>submit</button>
+                    <br/> <br/> <br/>
+                    <label>age:<input placeholder="age" ref={this.callBack}/></label>
+                    <button onClick={this.showValue}>submit</button>
+                </>
+            )
+        }
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<Class1/>)
+</script>
+</body>
+</html>

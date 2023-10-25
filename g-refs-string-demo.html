@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Refs demo</title>
+</head>
+<body>
+<h1>
+    <hr color="red"/>
+</h1>
+<div id="container"></div>
+<h1>
+    <hr color="red"/>
+</h1>
+<pre>
+  <b>
+    => Refs are to access DOM nodes or React elements created in the render method.
+
+    => When you change a ref, it doesn't cause the component to re-render.
+      This is a key difference from changing state or props.
+      When state or props change, React will typically trigger a re-render of the component.
+      However, changing a ref won't cause this
+
+    => Ref allows a React component to hold a reference to a DOM element or another React component.
+      This reference can be used to interact with or access the properties of that element or
+      component at a later time, even after it has been rendered.
+
+    => three ways to use refs:
+        1. String Refs – easy, but not recommended to use
+        2. Callback Refs
+        3. Creating Refs
+
+    => When to use Refs?
+        Here are a few of these rare situations:
+        1. Storing timeout IDs
+        2. Storing and manipulating DOM elements, which we cover on the next page
+        3. Storing other objects that aren’t necessary to calculate the JSX.
+        If your component needs to store some value, but it doesn’t impact the rendering logic, choose
+        refs.
+        Don’t overuse Refs.
+
+    => Syntax
+        ref='input1'
+        alertValue = () => {
+            alert(this.refs.input1.value)
+        }
+  </b>
+</pre>
+<script type="text/babel">
+    class Class1 extends React.Component {
+        alertValue = () => {
+            alert(this.refs.input1.value)
+        }
+        showValue = () => {
+            alert('name: ' + this.refs.input1.value + ' ' +
+                'age: ' + this.refs.input2.value)
+        }
+
+        render() {
+            return (
+                <>
+                    <label htmlFor="nameInput">
+                        Name:
+                        <input type="text" id="nameInput" name="name" ref='input1'/>
+                    </label>
+                    <button onClick={this.alertValue}>submit</button>
+                    <br/> <br/> <br/>
+                    <label>
+                        Age:
+                        <input type="text" name="name" ref='input2' onBlur={this.showValue}/>
+                    </label>
+                </>
+            )
+        }
+    }
+
+    ReactDOM.createRoot(document.getElementById('container')).render(<Class1/>)
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
